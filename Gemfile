@@ -7,7 +7,7 @@ gem 'sass'
 gem 'httparty', '0.8.1'
 gem 'simple_form', '2.0.1'
 gem 'mongrel', '>= 1.2.0.pre2'
-gem 'zaypay', '1.0.1'
+gem 'zaypay', '1.0.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
