@@ -1,0 +1,14 @@
+- if @ps.locale
+  #payment_method_selection.row_wrapper
+    .label_wrap
+      = label_tag :payment_method, "Select your preferred payment method", :class => 'control-label'
+    .input_wrap
+      - @ps.list_payment_methods.each do |method|
+        #button_row
+          = radio_button_tag :payment_method, method[:payment_method_id]
+          = label_tag "payment_method_#{method[:payment_method_id]}", method[:very_short_instructions_with_amount]
+
+  #submit_wrapper
+    .label_wrap
+    .input_wrap
+      = submit_tag "Proceed to payment screen", :class => 'btn btn-primary submit_button'

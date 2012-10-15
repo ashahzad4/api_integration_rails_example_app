@@ -1,0 +1,12 @@
+- content_for :page_header do
+  Payment
+
+- if @purchase.is_prepared? || @purchase.is_in_progress? || @purchase.is_paused?
+  %h3#instructions_header
+    Please follow the instructions below to proceed
+- elsif @purchase.is_paid?
+  = render 'thank_you'
+- elsif @purchase.has_error?
+  = render 'error_with_payment'
+
+= generate_instructions_body

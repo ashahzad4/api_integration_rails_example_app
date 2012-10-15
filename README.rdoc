@@ -1,0 +1,86 @@
+== Zaypay API Integration Example
+
+This Rails App demonstrates how you can use the Zaypay gem within a Rails application to create payments, process payment_reports, verify payments etc...
+
+The difference between the Payalogue approach and the API approach is that the API approach requires the developer to create all payment screens, while the Payalogue approach uses the payment screen from Zaypay, hence saves you lots of code.
+
+The is a 'barebone' application to give developers an idea of how to use our Zaypay gem within your application. Be it for providing a list of countries for your price setting or to handle incoming payment reports etc...
+Obviously, if you want to add more functionalities to this app, such as a User model or authentication etc., feel free. Again, this is just a barebone demonstration.
+
+If you want to run this application as it is, you must do the following.
+
+== Create Price Settings
+
+Once you have a Zaypay account, you can create your Price Settings on www.zaypay.com.
+By creating a Price Setting, you basically define the price (and a price margin) you want your customers to pay for a product or service.
+Every Price Setting that you create has its own id and api-key, and you need to put these data into your Zaypay configuration file under config/zaypay.yml
+
+== Zaypay Configuration file
+
+As you can see, under the 'config' folder, there is a file named 'zaypay.yml'
+Here you put all the id's and api-keys of the Price Settings that you want to use on your site.
+    # config/zaypay.yml
+    # Example
+    # price_setting_id: api_key
+    15347: b483bc8fga615234567890abcdef1234
+    22354: d667e98cf96a6829e72d0f3b2e5bf764
+    default: 15347
+
+This allows your Zaypay gem to instantiate a Zaypay::PriceSetting object with a Price Setting id, and use this object to make requests to the Zaypay-API to get information regarding payments, locales etc...
+The 'default' setting is optional and it allows the Zaypay::PriceSetting class in the Zaypay gem to be instantiated with the no-arg initializer.
+For more information on how to use the Zaypay gem, check
+https://github.com/zaypay/zaypay_gem
+
+== Populate your Products table
+In this demo-app, we have a Products table with the columns :name, description and :price_setting_id
+This demo app has no #create action in the products_controller, so you have to populate the table by yourself.
+
+You can use the db/seeds.rb for this purpose
+    # db/seeds.rb
+    # Example
+    Product.create(:name => 'Cool Weapon',     :description => 'Great for battles', :price_setting_id => 123455)
+    Product.create(:name => 'UberCool Weapon', :description => 'Win every battle' , :price_setting_id => 987654)
+Then in your terminal, run:
+    # Terminal
+    rake db:migrate
+    rake db:seed
+
+== Get the required gems
+
+=== For RVM users
+This demo app comes with a .rvmrc file. So if you use RVM, it will put the required gems in a separate Gemset
+
+So when you navigate to the project directory, it will ask you
+    Do you wish to trust this .rvmrc file? 
+If you don't see this message. Go up a directory and back to the project directory again
+    # terminal
+    cd ../
+    cd ../name_of_your_project_directory
+Type 'y' for yes, and then it should prompt:
+    Gemset 'zaypay_api_demo_app' does not exist, rvm gemset create 'zaypay_api_demo_app' first.
+Then you create this gemset by running
+    # Terminal
+    rvm gemset create 'zaypay_api_demo_app'
+
+=== Install Gems 
+In your terminal, make sure you are in your project directory, and then run
+    bundle install
+to install all necessary dependencies
+
+== Run your app
+Now you can run your app, with your own data for products and price_settings, by starting the server in your terminal
+    rails s
+
+== Port Forwarding
+If you want to run this application on your localhost, and yet connect to the Zaypay platform to create payments, receive reports etc, you might need to configure port forwarding on your local machine.
+
+== Other Zaypay demo applications
+For other demo applications with the Zaypay gem, check
+https://github.com/zaypay
+
+== Zaypay Gem
+For more information on how to use the Zaypay gem, check
+https://github.com/zaypay/zaypay_gem
+
+== License
+Copyright © 2012 Zaypay. Release under MIT license. See the attached MIT-License file.

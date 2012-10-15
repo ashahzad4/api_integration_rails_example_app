@@ -1,0 +1,14 @@
+#verification_code_instructions
+  = @ps.show_payment(@purchase.zaypay_payment_id)[:instructions][:long_instructions]
+
+= form_tag submit_verification_code_product_purchase_path(@product, @purchase), { :class => "form-horizontal", :id => 'verification_code_form', :remote => true } do
+  %div#verification_code_input.row_wrapper
+    .label_wrap
+      = label_tag :verification_code, "Enter your verification code", :class => 'control-label'
+    .input_wrap  
+      = text_field_tag :verification_code
+
+  #submit_wrapper
+    .label_wrap
+    .input_wrap
+      = submit_tag "Submit verification code", :class => 'btn btn-primary submit_button'

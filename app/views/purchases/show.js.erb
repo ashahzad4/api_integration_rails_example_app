@@ -1,0 +1,15 @@
+<% if @purchase.is_paid? || @purchase.has_error? %>
+  $('#instructions_header').remove();
+  <% if @purchase.is_paid? %>
+    $('#instructions_body').html("<%= escape_javascript render 'thank_you' %>");
+  <% elsif @purchase.has_error? %>
+    $('#instructions_body').html("<%= escape_javascript render 'error_with_payment' %>");
+  <% end %>
+<% elsif @zaypay_payment %>
+  <% if @zaypay_payment[:payment][:verification_needed] == true %>
+    $('#long_instructions').remove();
+    $('#instructions_body').html("<%= escape_javascript render 'verification_code_form' %>");
+  <% else %>
+    $('#long_instructions').html("<%= @zaypay_payment[:instructions][:long_instructions] %>");
+  <% end %>
+<% end %>

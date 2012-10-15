@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  product_id: 1
+  zaypay_payment_id: 12345
+  session_id: '1234abcd'
+  status: 'prepared'
+  needs_polling: false
+  
+two:
+  id: 2
+  product_id: 1
+  zaypay_payment_id: 23456
+  session_id: '1234abcd'
+  status: 'in_progress'
+  needs_polling: false
+
+three:
+  id: 3
+  product_id: 1
+  zaypay_payment_id: 34567
+  session_id: '1234abcd'
+  status: 'paused'
+  needs_polling: false
+  
+four:
+  id: 4
+  product_id: 1
+  zaypay_payment_id: 45678
+  session_id: '1234abcd'
+  status: 'paid'
+  needs_polling: false
+
+five:
+  id: 5
+  product_id: 1
+  zaypay_payment_id: 56789
+  session_id: '1234abcd'
+  status: 'error'
+  needs_polling: false
+
+six:
+  id: 6
+  product_id: 1
+  zaypay_payment_id: 67890
+  session_id: '1234abcd'
+  status: 'in_progress'
+  needs_polling: true

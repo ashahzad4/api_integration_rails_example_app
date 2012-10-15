@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+one:
+  id: 1
+  name: 40 points package
+  description: Lots of points!
+  price_setting_id: 111111
+
+two:
+  id: 2
+  name: 30 points package
+  description: 30 points!
+  price_setting_id: 222222
+  

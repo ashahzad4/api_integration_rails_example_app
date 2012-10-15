@@ -1,0 +1,5 @@
+%tr{:id => "product_#{product.id}" }
+  %td.product_name
+    = link_to product.name, new_product_purchase_path(product)
+  %td.product_description
+    = product.description

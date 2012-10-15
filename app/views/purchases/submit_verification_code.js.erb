@@ -1,0 +1,23 @@
+if( $('.alert-error').length > 0 ){
+  $('.alert-error').remove();
+}
+
+<% if params[:verification_code].empty? %>
+  $("<div class='alert alert-error'>You did not provide a verification code.</div>").prependTo('#table_unit').effect('pulsate', { times: 3}, 1500);
+<% end %>
+
+<% if @zaypay_payment %>
+  <% if @zaypay_payment[:payment][:status] == 'in_progress' %>
+    <% if @zaypay_payment[:payment][:verification_tries_left].to_i >= 1 %>
+      $("<div class='alert alert-error'>You provided an incorrect verification code.</div>").prependTo('#table_unit').effect('pulsate', { times: 3}, 1500);
+    <% elsif @zaypay_payment[:payment][:verification_tries_left].to_i <= 0 %>
+      $("<div class='alert alert-error'>You have failed too many times. You will be redirected.</div>").prependTo('#table_unit').effect('pulsate', { times: 3}, 1500);
+      setTimeout( function(){
+        $(window.location.replace("/products/<%= params[:product_id] %>/purchases/new") );
+      }, 3000);
+    <% end %>
+  <% elsif @zaypay_payment[:payment][:status] == 'paid' %>
+    $('#instructions_header').remove();
+    $('#instructions_body').html("<%= escape_javascript render 'thank_you' %>");
+  <% end %>
+<% end %>

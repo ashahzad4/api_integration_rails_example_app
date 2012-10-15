@@ -1,0 +1,69 @@
+// Place all the styles related to the purchases controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.row_wrapper{
+  overflow:hidden;
+  width:600px;
+}
+div.input_wrap, div.label_wrap{
+  overflow:hidden;
+  height:45px;
+}
+
+div.input_wrap{
+  width:300px;
+  padding-left:5px;
+  label{
+    display:inline;
+  }
+}
+
+div.label_wrap{
+  width:200px;
+  float:left;
+}
+
+div#submit_wrapper{
+  line-height:50px;
+}
+
+// purchase#show
+#instructions_header{
+    margin-bottom: 20px;
+}
+#instructions_body{
+    #verification_code_instructions{
+        margin-bottom: 20px;
+    }
+}
+
+#incorrect_verification_code{
+  display:none;
+  background-color: $errorBackground;
+  padding: 10px;
+  color: $errorText;
+  border-radius: 15px;
+}
+
+#failed_too_many_times{
+  padding: 10px;
+  display:none;    
+}
+
+#loading{
+  display: none;
+  float:left;
+  padding: 5px;
+  margin-right:-250px;  
+  background-color: #CEFFFF;
+}
+
+h5#waiting_for_response{
+  opacity: 0;
+  margin-top: 10px;
+  padding:10px;
+  background-color: #CEFFFF;
+  color: #444;
+  border-radius: 15px;
+}

@@ -1,0 +1,22 @@
+.page_header{:style => "margin-bottom:30px;"}
+  .label_wrap
+  .input_wrap
+    %h2
+      = @product.name
+
+= form_tag product_purchases_path(@product), { :class => "form-horizontal", :id => "purchase_form", :autocomplete => :off } do |f|
+  %div#language_selection.row_wrapper
+    .label_wrap
+      = label_tag :language, 'Select your language', :class => 'control-label'
+    .input_wrap
+      = select_tag :language, options_for_select( @ps.list_languages.map{ |language| [ language[:native_name], language[:code] ]}, @ps.locale_for_ip(request.remote_ip)[:language])
+
+  %div#country_selection.row_wrapper
+    .label_wrap
+      = label_tag :country, "Select your country", :class => 'control-label'
+    .input_wrap
+      = select_tag :country, options_for_select( @ps.list_countries.map{ |country|  [ country[:name], country[:code] ]}, | 
+                                                 @ps.locale_for_ip(request.remote_ip)[:country]), :include_blank => true
+
+  %div#payment_method_and_submit
+    = render :partial => 'generate_select_menu'
