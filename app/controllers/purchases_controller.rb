@@ -61,7 +61,7 @@ class PurchasesController < ApplicationController
       }
 
       format.html {
-        unless @purchase.is_paid? || @purchase.has_error?
+        if !@purchase.is_paid? && !@purchase.has_error?
           @zaypay_payment = @ps.show_payment(@purchase.zaypay_payment_id)
         end
       }

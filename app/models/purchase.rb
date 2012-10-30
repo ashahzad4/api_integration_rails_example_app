@@ -2,7 +2,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :product
 
   def update_status_by_valid_request(params)
-    return unless payment_id_equals?(params[:payment_id]) && price_setting_equals?(params[:price_setting_id]) && status_equals?(params[:status])
+    return if !payment_id_equals?(params[:payment_id]) || !price_setting_equals?(params[:price_setting_id]) || !status_equals?(params[:status])
     update_attributes(:status => params[:status])
   end
 
